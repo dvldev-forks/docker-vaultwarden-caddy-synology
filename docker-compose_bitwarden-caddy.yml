@@ -3,14 +3,14 @@
 #--- 
 version: "3"
 services: 
-  bitwardenrs: 
+  vaultwarden:
     restart: always
     # Dani Garcia image https://github.com/dani-garcia/bitwarden_rs
-    image: "bitwardenrs/server:latest"
-    container_name: bitwardenrs
+    image: "vaultwarden/server:latest"
+    container_name: vaultwarden
     environment:
       # Timezone settings, important for Fail2ban to work
-      - TZ=Europe/Paris
+      - TZ=Europe/Amsterdam
       # Logging connection attemps
       - LOG_FILE=/data/bitwarden.log
       - EXTENDED_LOGGING='true'
@@ -33,7 +33,7 @@ services:
     expose:
       - "80"
     networks:
-      - bitwarden_net
+      - vaultwarden_net
     volumes: 
       - /volume1/docker/bw-data:/data
       
